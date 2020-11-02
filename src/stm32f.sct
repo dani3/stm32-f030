@@ -2,7 +2,8 @@ LR_NVM 0x08000000
 {
     ES_NVM +0
     {
-        *.o     (+RO)
+        *.o (vector_table, +FIRST)
+        *.o (+RO)
     }
 }
 
@@ -10,6 +11,6 @@ LR_RAM +0
 {
     ES_RAM 0x20000000
     {
-        *.o     (+RW, ZI)
+        *.o (+RW, +ZI)
     }
 }

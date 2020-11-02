@@ -24,6 +24,8 @@
 
 #include <core/stm32f.h>
 
+extern void __main(void);
+
 /*----------------------------------------------------------------------------
   Exception / Interrupt Handler Function Prototype
  *----------------------------------------------------------------------------*/
@@ -64,8 +66,7 @@ void Interrupt9_Handler     (void) __attribute__ ((weak, alias("Default_Handler"
 /*----------------------------------------------------------------------------
   Exception / Interrupt Vector table
  *----------------------------------------------------------------------------*/
-extern const pFunc __VECTOR_TABLE[240];
-
+__attribute__((section("vector_table")))
 const pFunc __VECTOR_TABLE[240] = {
   (pFunc) __INITIAL_SP,                             /*     Initial Stack Pointer */
   Reset_Handler,                            /*     Reset Handler */
@@ -98,12 +99,13 @@ const pFunc __VECTOR_TABLE[240] = {
                                             /* Interrupts 10 .. 223 are left out */
 };
 
+
 /*----------------------------------------------------------------------------
   Reset Handler called on controller reset
  *----------------------------------------------------------------------------*/
 void Reset_Handler(void)
 {
-  //__PROGRAM_START();                        /* Enter PreMain (C library entry point) */
+  __main();
 }
 
 /*----------------------------------------------------------------------------
