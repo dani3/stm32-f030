@@ -1,89 +1,51 @@
-/******************************************************************************
- * @file     startup_Device.c
- * @brief    CMSIS-Core(M) Device Startup File for <Device>
- * @version  V2.0.0
- * @date     20. May 2019
- ******************************************************************************/
-/*
- * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
- *
- * SPDX-License-Identifier: Apache-2.0
- *
- * Licensed under the Apache License, Version 2.0 (the License); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+/** \file startup_stm32f.c
+ * \brief startup for a the STM32F030 device.
  */
-
 #include <core/stm32f.h>
+
+// Exception / Interrupt Handler Function Prototype
+typedef void(*pIrq)(void);
+
+void reset_handler(void);
 
 extern void __main(void);
 
-/*----------------------------------------------------------------------------
-  Exception / Interrupt Handler Function Prototype
- *----------------------------------------------------------------------------*/
-typedef void(*pFunc)(void);
+extern void nmi_handler(void);
+extern void hard_fault_handler(void);
+extern void systick_handler(void);
 
-/*----------------------------------------------------------------------------
-  Internal References
- *----------------------------------------------------------------------------*/
-void Default_Handler(void);
-void Reset_Handler(void);
-
-/*----------------------------------------------------------------------------
-  Exception / Interrupt Handler
- *----------------------------------------------------------------------------*/
-/* Exceptions */
-void NMI_Handler            (void) __attribute__ ((weak, alias("Default_Handler")));
-void HardFault_Handler      (void) __attribute__ ((weak, alias("Default_Handler")));
-void MemManage_Handler      (void) __attribute__ ((weak, alias("Default_Handler")));
-void BusFault_Handler       (void) __attribute__ ((weak, alias("Default_Handler")));
-void UsageFault_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void SVC_Handler            (void) __attribute__ ((weak, alias("Default_Handler")));
-void DebugMon_Handler       (void) __attribute__ ((weak, alias("Default_Handler")));
-void PendSV_Handler         (void) __attribute__ ((weak, alias("Default_Handler")));
-void SysTick_Handler        (void) __attribute__ ((weak, alias("Default_Handler")));
-
-void Interrupt0_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt1_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt2_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt3_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt4_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt5_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt6_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt7_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt8_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-void Interrupt9_Handler     (void) __attribute__ ((weak, alias("Default_Handler")));
-
+extern void Interrupt0_Handler(void);
+extern void Interrupt1_Handler(void);
+extern void Interrupt2_Handler(void);
+extern void Interrupt3_Handler(void);
+extern void Interrupt4_Handler(void);
+extern void Interrupt5_Handler(void);
+extern void Interrupt6_Handler(void);
+extern void Interrupt7_Handler(void);
+extern void Interrupt8_Handler(void);
+extern void Interrupt9_Handler(void);
 
 /*----------------------------------------------------------------------------
   Exception / Interrupt Vector table
  *----------------------------------------------------------------------------*/
 __attribute__((section("vector_table")))
-const pFunc __VECTOR_TABLE[240] = {
-  (pFunc) __INITIAL_SP,                             /*     Initial Stack Pointer */
-  Reset_Handler,                            /*     Reset Handler */
-  NMI_Handler,                              /* -14 NMI Handler */
-  HardFault_Handler,                        /* -13 Hard Fault Handler */
-  MemManage_Handler,                        /* -12 MPU Fault Handler */
-  BusFault_Handler,                         /* -11 Bus Fault Handler */
-  UsageFault_Handler,                       /* -10 Usage Fault Handler */
+const pIrq vector_table[240] = {
+  (pIrq) __INITIAL_SP,                      /*     Initial Stack Pointer */
+  reset_handler,                            /*     Reset Handler */
+  nmi_handler,                              /* -14 NMI Handler */
+  hard_fault_handler,                        /* -13 Hard Fault Handler */
+  0,                                        /* -12 MPU Fault Handler */
+  0,                                        /* -11 Bus Fault Handler */
+  0,                                        /* -10 Usage Fault Handler */
   0,                                        /*     Reserved */
   0,                                        /*     Reserved */
   0,                                        /*     Reserved */
   0,                                        /*     Reserved */
-  SVC_Handler,                              /*  -5 SVCall Handler */
-  DebugMon_Handler,                         /*  -4 Debug Monitor Handler */
+  0,                                        /*  -5 SVCall Handler */
+  0,                                        /*  -4 Debug Monitor Handler */
   0,                                        /*     Reserved */
-  PendSV_Handler,                           /*  -2 PendSV Handler */
-  SysTick_Handler,                          /*  -1 SysTick Handler */
+  0,                                        /*  -2 PendSV Handler */
+  systick_handler,                          /*  -1 SysTick Handler */
 
   /* Interrupts */
   Interrupt0_Handler,                       /*   0 Interrupt 0 */
@@ -96,22 +58,14 @@ const pFunc __VECTOR_TABLE[240] = {
   Interrupt7_Handler,                       /*   7 Interrupt 7 */
   Interrupt8_Handler,                       /*   8 Interrupt 8 */
   Interrupt9_Handler                        /*   9 Interrupt 9 */
-                                            /* Interrupts 10 .. 223 are left out */
 };
 
 
-/*----------------------------------------------------------------------------
-  Reset Handler called on controller reset
- *----------------------------------------------------------------------------*/
-void Reset_Handler(void)
-{
+/** \fn reset_handler
+ * \brief Reset Handler called on controller reset.
+ *
+ * \return Void.
+ */
+void reset_handler(void) {
   __main();
-}
-
-/*----------------------------------------------------------------------------
-  Default Handler for Exceptions / Interrupts
- *----------------------------------------------------------------------------*/
-void Default_Handler(void)
-{
-  while(1);
 }

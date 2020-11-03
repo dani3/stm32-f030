@@ -374,7 +374,7 @@
             <ScatterFile>.\src\stm32f.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--entry=Reset_Handler</Misc>
+            <Misc>--entry=reset_handler</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -412,7 +412,17 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
+              <FilePath>.\src\main\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>hal</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32f_irq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\hal\stm32f_irq.c</FilePath>
             </File>
           </Files>
         </Group>
