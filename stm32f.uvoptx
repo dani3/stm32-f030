@@ -231,8 +231,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\core\stm32f.h</PathWithFileName>
-      <FilenameWithoutPath>stm32f.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\core\types.h</PathWithFileName>
+      <FilenameWithoutPath>types.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -243,8 +243,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\core\types.h</PathWithFileName>
-      <FilenameWithoutPath>types.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\core\device.h</PathWithFileName>
+      <FilenameWithoutPath>device.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

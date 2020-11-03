@@ -2,10 +2,12 @@
 
 ## Roadmap
 
-- [x] Project setup
+- [x] Project setup.
 - [x] Basic startup and debug environment.
-- [ ] Interrupt handling
-- [ ] Add doxygen
+- [ ] Interrupt handling.
+- [ ] Add doxygen.
+- [x] Add vendor files from ST and ARM.
+- [ ] Configure the internal clock.
 
 ## Changelog
 

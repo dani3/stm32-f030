@@ -385,14 +385,14 @@
           <GroupName>core</GroupName>
           <Files>
             <File>
-              <FileName>stm32f.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\core\stm32f.h</FilePath>
-            </File>
-            <File>
               <FileName>types.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\core\types.h</FilePath>
+            </File>
+            <File>
+              <FileName>device.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\core\device.h</FilePath>
             </File>
           </Files>
         </Group>

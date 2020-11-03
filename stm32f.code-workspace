@@ -10,7 +10,8 @@
 		"editor.insertSpaces": true,
 		"C_Cpp.default.includePath": [
 			"src/",
-			"src/core"
+			"vendor/CMSIS/Include/",
+			"vendor/CMSIS/Device/ST/SMT32F0xx/Include/"
 		],
 		"C_Cpp.default.intelliSenseMode": "clang-arm",
 		"C_Cpp.default.cStandard": "c11",

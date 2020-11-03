@@ -1,14 +1,14 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-typedef unsigned char BYTE;
-typedef unsigned short SHORT;
-typedef unsigned int WORD;
-typedef unsigned long int DWORD;
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long int u64;
 
-typedef signed char SBYTE;
-typedef signed short SSHORT;
-typedef signed int SWORD;
-typedef signed long int SDWORD;
+typedef signed char s8;
+typedef signed short s16;
+typedef signed int s32;
+typedef signed long int s64;
 
 #endif // TYPES_H
